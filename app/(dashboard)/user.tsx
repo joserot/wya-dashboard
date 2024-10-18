@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { auth, signOut } from '@/lib/auth';
 import Image from 'next/image';
 import {
   DropdownMenu,
@@ -12,8 +11,8 @@ import {
 import Link from 'next/link';
 
 export async function User() {
-  let session = await auth();
-  let user = session?.user;
+  // let session = await auth();
+  // let user = session?.user;
 
   return (
     <DropdownMenu>
@@ -23,13 +22,13 @@ export async function User() {
           size="icon"
           className="overflow-hidden rounded-full"
         >
-          <Image
-            src={user?.image ?? '/placeholder-user.jpg'}
+          {/* <Image
+            // src={user?.image ?? '/placeholder-user.jpg'}
             width={36}
             height={36}
             alt="Avatar"
             className="overflow-hidden rounded-full"
-          />
+          /> */}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -38,12 +37,12 @@ export async function User() {
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
-        {user ? (
+        {/* {user ? (
           <DropdownMenuItem>
             <form
               action={async () => {
                 'use server';
-                await signOut();
+                // await signOut();
               }}
             >
               <button type="submit">Sign Out</button>
@@ -53,7 +52,7 @@ export async function User() {
           <DropdownMenuItem>
             <Link href="/login">Sign In</Link>
           </DropdownMenuItem>
-        )}
+        )} */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

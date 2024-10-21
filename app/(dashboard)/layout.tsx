@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Home, PanelLeft, ShoppingCart, Dock } from 'lucide-react';
+import { Home, PanelLeft, Layers3 } from 'lucide-react';
 
 import {
   Breadcrumb,
@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { User } from './user';
 import Providers from './providers';
 import { NavItem } from './nav-item';
-import { VercelLogo } from '@/components/icons';
+import { Logo } from '@/components/icons';
 
 export default function DashboardLayout({
   children
@@ -44,13 +44,13 @@ function DesktopNav() {
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-        <VercelLogo />
+        <Logo />
         <NavItem href="#" label="Inmuebles">
           <Home className="h-5 w-5" />
         </NavItem>
 
         <NavItem href="#" label="Categorias">
-          <Dock className="h-5 w-5" />
+          <Layers3 className="h-5 w-5" />
         </NavItem>
       </nav>
     </aside>
@@ -79,7 +79,7 @@ function MobileNav() {
             href="#"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
-            <ShoppingCart className="h-5 w-5" />
+            <Layers3 className="h-5 w-5" />
             Categorías
           </Link>
         </nav>

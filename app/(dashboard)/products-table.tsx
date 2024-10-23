@@ -16,17 +16,63 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { Product } from './product';
-import { SelectProduct } from '@/lib/db';
+// import { SelectProduct } from '@/lib/db';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+const products = [
+  {
+    id: 1,
+    name: 'Product 1',
+    status: 'In Stock',
+    price: 5,
+    stock: 10,
+    availableAt: new Date(),
+    imageUrl: '/placeholder-product.jpg'
+  },
+  {
+    id: 2,
+    name: 'Product 2',
+    status: 'Out of Stock',
+    price: 10,
+    stock: 5,
+    availableAt: new Date(),
+    imageUrl: '/placeholder-product.jpg'
+  },
+  {
+    id: 3,
+    name: 'Product 3',
+    status: 'In Stock',
+    price: 15,
+    stock: 8,
+    availableAt: new Date(),
+    imageUrl: '/placeholder-product.jpg'
+  },
+  {
+    id: 4,
+    name: 'Product 4',
+    status: 'Out of Stock',
+    price: 20,
+    stock: 2,
+    availableAt: new Date(),
+    imageUrl: '/placeholder-product.jpg'
+  },
+  {
+    id: 5,
+    name: 'Product 5',
+    status: 'In Stock',
+    price: 25,
+    stock: 7,
+    availableAt: new Date(),
+    imageUrl: '/placeholder-product.jpg'
+  }
+];
+
 export function ProductsTable({
-  products,
   offset,
   totalProducts
 }: {
-  products: SelectProduct[];
   offset: number;
   totalProducts: number;
 }) {
@@ -44,9 +90,9 @@ export function ProductsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
+        <CardTitle>Inmuebles</CardTitle>
         <CardDescription>
-          Manage your products and view their sales performance.
+          En está página se muestran todos los inmuebles disponibles
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -54,23 +100,23 @@ export function ProductsTable({
           <TableHeader>
             <TableRow>
               <TableHead className="hidden w-[100px] sm:table-cell">
-                <span className="sr-only">Image</span>
+                <span className="sr-only">Portada</span>
               </TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="hidden md:table-cell">Price</TableHead>
+              <TableHead>Nombre</TableHead>
+              <TableHead>Tipo</TableHead>
+              <TableHead className="hidden md:table-cell">Precio</TableHead>
               <TableHead className="hidden md:table-cell">
-                Total Sales
+                Clicks en contactar
               </TableHead>
-              <TableHead className="hidden md:table-cell">Created at</TableHead>
+              <TableHead className="hidden md:table-cell">Creado</TableHead>
               <TableHead>
-                <span className="sr-only">Actions</span>
+                <span className="sr-only">Acciones</span>
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {products.map((product) => (
-              <Product key={product.id} product={product} />
+              <Product key={product.id} />
             ))}
           </TableBody>
         </Table>
@@ -78,11 +124,11 @@ export function ProductsTable({
       <CardFooter>
         <form className="flex items-center w-full justify-between">
           <div className="text-xs text-muted-foreground">
-            Showing{' '}
+            Mostrando{' '}
             <strong>
               {Math.min(offset - productsPerPage, totalProducts) + 1}-{offset}
             </strong>{' '}
-            of <strong>{totalProducts}</strong> products
+            de <strong>{totalProducts}</strong> inmuebles
           </div>
           <div className="flex">
             <Button
@@ -93,7 +139,7 @@ export function ProductsTable({
               disabled={offset === productsPerPage}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Prev
+              Anterior
             </Button>
             <Button
               formAction={nextPage}
@@ -102,7 +148,7 @@ export function ProductsTable({
               type="submit"
               disabled={offset + productsPerPage > totalProducts}
             >
-              Next
+              Siguiente
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

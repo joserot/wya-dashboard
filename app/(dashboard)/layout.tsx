@@ -45,11 +45,11 @@ function DesktopNav() {
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
         <Logo />
-        <NavItem href="#" label="Inmuebles">
+        <NavItem href="/" label="Inmuebles">
           <Home className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="#" label="Categorias">
+        <NavItem href="/categories" label="Categorias">
           <Layers3 className="h-5 w-5" />
         </NavItem>
       </nav>
@@ -69,14 +69,14 @@ function MobileNav() {
       <SheetContent side="left" className="sm:max-w-xs">
         <nav className="grid gap-6 text-lg font-medium">
           <Link
-            href="#"
+            href="/"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <Home className="h-5 w-5" />
             Inmuebles
           </Link>
           <Link
-            href="#"
+            href="/categories"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <Layers3 className="h-5 w-5" />
@@ -94,13 +94,13 @@ function DashboardBreadcrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="#">Dashboard</Link>
+            <Link href="/">Dashboard</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="#">Inmuebles</Link>
+            <Link href="/">Inmuebles</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

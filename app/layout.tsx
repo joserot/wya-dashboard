@@ -1,3 +1,5 @@
+import { Toaster } from '@/components/ui/toaster';
+
 import './globals.css';
 
 export const metadata = {
@@ -13,6 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <Toaster />
       <body className="flex min-h-screen w-full flex-col">{children}</body>
     </html>
   );

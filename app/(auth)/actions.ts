@@ -3,6 +3,33 @@
 import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 import { ACCESS_TOKEN_NAME } from 'constants/api';
+import { API_URL } from 'constants/api';
+import { redirect } from 'next/navigation';
+
+export default async function login(prevState: any, formData: FormData) {
+  try {
+    const res = await fetch(`${API_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: formData.get('email'),
+        password: formData.get('password')
+      })
+    });
+
+    if (!res.ok) {
+      const errorMessage = await res.text();
+      return { message: errorMessage };
+    }
+
+    await setAuthCookie(res);
+
+    redirect('/');
+  } catch (error) {
+    console.error('Error en la autenticación:', error);
+    return { message: 'Error en la autenticación' };
+  }
+}
 
 export const setAuthCookie = async (response: Response) => {
   const cookiesStore = await cookies();

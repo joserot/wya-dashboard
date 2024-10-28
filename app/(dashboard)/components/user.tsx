@@ -15,14 +15,14 @@ import { logout } from '@/app/(auth)/actions';
 
 import { useRouter } from 'next/navigation';
 
-import { getMe } from '../(auth)/services/get-me';
+import { getMe } from '../../(auth)/services/get-me';
 
 export async function User() {
   const router = useRouter();
 
-  // const user = await getMe();
+  const user = await getMe();
 
-  // console.log(user);
+  console.log(user);
 
   const handelClick = async () => {
     await logout();

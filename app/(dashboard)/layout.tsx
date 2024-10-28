@@ -11,9 +11,9 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { User } from './user';
-import Providers from './providers';
-import { NavItem } from './nav-item';
+import { User } from './components/user';
+import Providers from './components/providers';
+import { NavItem } from './components/nav-item';
 import { Logo } from '@/components/icons';
 
 // import { getSession } from '@/app/(auth)/actions';

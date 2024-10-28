@@ -16,7 +16,6 @@ import Providers from './components/providers';
 import { NavItem } from './components/nav-item';
 import { Logo } from '@/components/icons';
 
-// import { getSession } from '@/app/(auth)/actions';
 import { getMe } from '../(auth)/services/get-me';
 
 export default async function DashboardLayout({
@@ -26,7 +25,7 @@ export default async function DashboardLayout({
 }) {
   const session = await getMe();
 
-  console.log(session);
+  // console.log(session);
 
   return (
     <Providers>

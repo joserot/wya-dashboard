@@ -29,3 +29,16 @@ export const get = async (path: string) => {
     return { data: null, error };
   }
 };
+
+export const remove = async (path: string, formData: FormData) => {
+  try {
+    const params = Object.fromEntries(formData);
+    const res = await axiosInstance.delete(path, {
+      headers: { ...getHeaders() },
+      data: params
+    });
+    return res.data;
+  } catch (error) {
+    return { data: null, error };
+  }
+};

@@ -1,4 +1,5 @@
-import Image from 'next/image';
+'use client';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,30 +11,25 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { TableCell, TableRow } from '@/components/ui/table';
+import { deleteProperty } from '../actions';
+import { Input } from '@/components/ui/input';
 
-export function Product() {
+interface Props {
+  property: Property;
+}
+
+export function Product({ property }: Props) {
   return (
     <TableRow>
-      <TableCell className="hidden sm:table-cell">
-        {/* <Image
-          alt="Product image"
-          className="aspect-square rounded-md object-cover"
-          height="64"
-          src={'/placeholder-product.jpg'}
-          width="64"
-        /> */}
-      </TableCell>
-      <TableCell className="font-medium">{'Nombre'}</TableCell>
+      <TableCell className="font-medium">{property.name}</TableCell>
       <TableCell>
         <Badge variant="outline" className="capitalize">
-          {'Status'}
+          {property.category.name}
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${5}`}</TableCell>
+      <TableCell className="hidden md:table-cell">{`$${property.price}`}</TableCell>
       <TableCell className="hidden md:table-cell">{5}</TableCell>
-      <TableCell className="hidden md:table-cell">
-        {new Date().toLocaleDateString('en-US')}
-      </TableCell>
+      <TableCell className="hidden md:table-cell">{property.slug}</TableCell>
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -43,11 +39,12 @@ export function Product() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuLabel>Acciones</DropdownMenuLabel>
+            <DropdownMenuItem>Editar</DropdownMenuItem>
             <DropdownMenuItem>
-              <form>
-                <button type="submit">Delete</button>
+              <form action={deleteProperty}>
+                <Input type="hidden" name="id" value={property.id} />
+                <button type="submit">Eliminar</button>
               </form>
             </DropdownMenuItem>
           </DropdownMenuContent>

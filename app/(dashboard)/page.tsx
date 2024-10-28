@@ -1,17 +1,26 @@
+'use server';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductsTable } from './components/products-table';
 import { getProperties } from './services/get-properties';
 
-export default async function ProductsPage(props: {
-  searchParams: Promise<{ q: string; offset: string }>;
-}) {
+export default async function ProductsPage() {
   // const searchParams = await props.searchParams;
   // const search = searchParams.q ?? '';
   // const offset = searchParams.offset ?? 0;
 
-  const properties: Property[] = await getProperties();
+  let properties: Property[] = [];
+
+  try {
+    properties = await getProperties();
+    if (!Array.isArray(properties)) {
+      throw new Error('Expected an array of properties');
+    }
+  } catch (error) {
+    console.error('Error fetching properties:', error);
+  }
 
   return (
     <Tabs defaultValue="all">

@@ -11,19 +11,17 @@ import {
 import { MoreHorizontal } from 'lucide-react';
 import { TableCell, TableRow } from '@/components/ui/table';
 
-import { deleteProduct } from './actions';
-
 export function Product() {
   return (
     <TableRow>
       <TableCell className="hidden sm:table-cell">
-        <Image
+        {/* <Image
           alt="Product image"
           className="aspect-square rounded-md object-cover"
           height="64"
           src={'/placeholder-product.jpg'}
           width="64"
-        />
+        /> */}
       </TableCell>
       <TableCell className="font-medium">{'Nombre'}</TableCell>
       <TableCell>
@@ -48,7 +46,7 @@ export function Product() {
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>Edit</DropdownMenuItem>
             <DropdownMenuItem>
-              <form action={deleteProduct}>
+              <form>
                 <button type="submit">Delete</button>
               </form>
             </DropdownMenuItem>

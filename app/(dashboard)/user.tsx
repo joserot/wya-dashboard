@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import {
@@ -8,11 +10,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import Link from 'next/link';
+
+import { logout } from '@/app/(auth)/actions';
+
+import { useRouter } from 'next/navigation';
+
+import { getMe } from '../(auth)/services/get-me';
 
 export async function User() {
-  // let session = await auth();
-  // let user = session?.user;
+  const router = useRouter();
+
+  // const user = await getMe();
+
+  // console.log(user);
+
+  const handelClick = async () => {
+    await logout();
+    router.back();
+  };
 
   return (
     <DropdownMenu>
@@ -35,7 +50,7 @@ export async function User() {
         <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Configuración</DropdownMenuItem>
-        <DropdownMenuItem>Soporte</DropdownMenuItem>
+        <DropdownMenuItem onClick={handelClick}>Cerrar sesión</DropdownMenuItem>
         {/* <DropdownMenuSeparator /> */}
         {/* {user ? (
           <DropdownMenuItem>

@@ -16,11 +16,18 @@ import Providers from './providers';
 import { NavItem } from './nav-item';
 import { Logo } from '@/components/icons';
 
-export default function DashboardLayout({
+// import { getSession } from '@/app/(auth)/actions';
+// import { getMe } from '../(auth)/services/get-me';
+
+export default async function DashboardLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
+  // const session = await getMe();
+
+  // console.log(session);
+
   return (
     <Providers>
       <main className="flex min-h-screen w-full flex-col bg-muted/40">

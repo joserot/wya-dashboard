@@ -17,16 +17,16 @@ import { NavItem } from './components/nav-item';
 import { Logo } from '@/components/icons';
 
 // import { getSession } from '@/app/(auth)/actions';
-// import { getMe } from '../(auth)/services/get-me';
+import { getMe } from '../(auth)/services/get-me';
 
 export default async function DashboardLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
-  // const session = await getMe();
+  const session = await getMe();
 
-  // console.log(session);
+  console.log(session);
 
   return (
     <Providers>

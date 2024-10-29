@@ -15,12 +15,16 @@ import { logout } from '@/app/(auth)/actions';
 
 import { useRouter } from 'next/navigation';
 
-export function User() {
+interface Props {
+  user: User;
+}
+
+export function User({ user }: Props) {
   const router = useRouter();
 
   const handelClick = async () => {
     await logout();
-    router.back();
+    router.refresh();
   };
 
   return (
@@ -41,27 +45,10 @@ export function User() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
+        <DropdownMenuLabel>{user.fullName}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Configuración</DropdownMenuItem>
         <DropdownMenuItem onClick={handelClick}>Cerrar sesión</DropdownMenuItem>
-        {/* <DropdownMenuSeparator /> */}
-        {/* {user ? (
-          <DropdownMenuItem>
-            <form
-              action={async () => {
-                'use server';
-                // await signOut();
-              }}
-            >
-              <button type="submit">Sign Out</button>
-            </form>
-          </DropdownMenuItem>
-        ) : (
-          <DropdownMenuItem>
-            <Link href="/login">Sign In</Link>
-          </DropdownMenuItem>
-        )} */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

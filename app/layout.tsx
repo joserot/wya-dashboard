@@ -15,8 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <Toaster />
-      <body className="flex min-h-screen w-full flex-col">{children}</body>
+      <body className="flex min-h-screen w-full flex-col">
+        <>
+          <Toaster />
+          {children}
+        </>
+      </body>
     </html>
   );
 }

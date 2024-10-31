@@ -50,9 +50,9 @@ export function ProductsTable({ properties, offset, totalProperties }: Props) {
         <Table>
           <TableHeader>
             <TableRow>
-              {/* <TableHead className="hidden w-[100px] sm:table-cell">
-                <span className="sr-only">Portada</span>
-              </TableHead> */}
+              <TableHead className="hidden w-[100px] sm:table-cell">
+                Portada
+              </TableHead>
               <TableHead>Nombre</TableHead>
               <TableHead>Tipo</TableHead>
               <TableHead className="hidden md:table-cell">Precio</TableHead>

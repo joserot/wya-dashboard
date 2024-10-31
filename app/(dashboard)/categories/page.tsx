@@ -4,7 +4,16 @@ import { PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default async function CustomersPage() {
-  const categories = await getCategories();
+  let categories: Category[] = [];
+
+  try {
+    categories = await getCategories();
+    if (!Array.isArray(categories)) {
+      throw new Error('Expected an array of categories');
+    }
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
 
   return (
     <>

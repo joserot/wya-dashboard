@@ -2,10 +2,12 @@ import { get } from '../../../utils/fetch';
 import propertyAdapter from '../../../adapters/property.adapter';
 
 export async function getProperties(
-  page: string
+  page: string,
+  categorySlug?: string | null
 ): Promise<PropertiesResult | null> {
   const data = await get('/property', {
-    page: page
+    page: page,
+    categorySlug: categorySlug
   });
 
   if (!data || data.length === 0) return null;

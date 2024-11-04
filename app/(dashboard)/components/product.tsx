@@ -23,15 +23,13 @@ export function Product({ property }: Props) {
   return (
     <TableRow>
       <TableCell className="w-[100px] hidden sm:table-cell">
-        {property.coverImage && (
-          <Image
-            src={property.coverImage}
-            alt="Product"
-            width={100}
-            height={100}
-            className="object-cover"
-          />
-        )}
+        <Image
+          src={property.coverImage}
+          alt="Product"
+          width={100}
+          height={100}
+          className="object-cover"
+        />
       </TableCell>
       <TableCell className="font-medium">{property.name}</TableCell>
       <TableCell>

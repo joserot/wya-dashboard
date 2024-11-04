@@ -16,43 +16,49 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { Product } from './product';
-import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 interface Props {
   properties: Property[];
-  offset: number;
-  totalProperties: number;
   totalPages: number;
   currentPage: string;
+  title: string;
+  description: string;
 }
 
 export function ProductsTable({
   properties,
-  offset,
-  totalProperties,
   totalPages,
-  currentPage
+  currentPage,
+  title,
+  description
 }: Props) {
-  let router = useRouter();
-  let productsPerPage = 5;
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   function prevPage() {
-    router.back();
+    if (currentPage === '1') return;
+    const params = new URLSearchParams(searchParams);
+    params.set('page', `${Number(currentPage) - 1}`);
+
+    replace(`${pathname}?${params.toString()}`);
   }
 
   function nextPage() {
-    router.push(`/?page=${Number(currentPage) + 1}`, { scroll: false });
+    const params = new URLSearchParams(searchParams);
+    params.set('page', `${Number(currentPage) + 1}`);
+
+    replace(`${pathname}?${params.toString()}`);
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Inmuebles</CardTitle>
-        <CardDescription>
-          En está página se muestran todos los inmuebles disponibles
-        </CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>

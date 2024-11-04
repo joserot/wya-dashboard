@@ -6,21 +6,22 @@ import { Button } from '@/components/ui/button';
 import { ProductsTable } from './components/products-table';
 import { getProperties } from './services/get-properties';
 
-export default async function ProductsPage() {
-  // const searchParams = await props.searchParams;
-  // const search = searchParams.q ?? '';
-  // const offset = searchParams.offset ?? 0;
+export default async function ProductsPage({
+  searchParams
+}: {
+  searchParams: { page?: string };
+}) {
+  const page = searchParams.page ?? '1';
 
-  let properties: Property[] = [];
+  let result: PropertiesResult | null = null;
 
   try {
-    properties = await getProperties();
-    if (!Array.isArray(properties)) {
-      throw new Error('Expected an array of properties');
-    }
+    result = await getProperties(page);
   } catch (error) {
     console.error('Error fetching properties:', error);
   }
+
+  if (!result) return null;
 
   return (
     <Tabs defaultValue="all">
@@ -41,9 +42,11 @@ export default async function ProductsPage() {
       </div>
       <TabsContent value="all">
         <ProductsTable
-          properties={properties}
-          offset={properties.length}
-          totalProperties={100}
+          properties={result.properties}
+          offset={result.properties.length}
+          totalProperties={result.totalProperties}
+          totalPages={result.totalPages}
+          currentPage={page}
         />
       </TabsContent>
     </Tabs>

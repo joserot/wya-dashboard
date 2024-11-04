@@ -7,6 +7,7 @@ export default function propertyAdapter(data: any): Property {
     price: data.price,
     coverImage: data.coverImage,
     images: data.images,
-    category: data.category
+    category: data.category,
+    contacts: data.contacts
   };
 }

@@ -40,7 +40,9 @@ export function Product({ property }: Props) {
         </Badge>
       </TableCell>
       <TableCell className="hidden md:table-cell">{`$${property.price}`}</TableCell>
-      <TableCell className="hidden md:table-cell">{5}</TableCell>
+      <TableCell className="hidden md:table-cell">
+        {property.contacts ?? 0}
+      </TableCell>
       <TableCell className="hidden md:table-cell">{property.slug}</TableCell>
       <TableCell>
         <DropdownMenu>

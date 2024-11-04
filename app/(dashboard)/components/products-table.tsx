@@ -24,9 +24,17 @@ interface Props {
   properties: Property[];
   offset: number;
   totalProperties: number;
+  totalPages: number;
+  currentPage: string;
 }
 
-export function ProductsTable({ properties, offset, totalProperties }: Props) {
+export function ProductsTable({
+  properties,
+  offset,
+  totalProperties,
+  totalPages,
+  currentPage
+}: Props) {
   let router = useRouter();
   let productsPerPage = 5;
 
@@ -35,7 +43,7 @@ export function ProductsTable({ properties, offset, totalProperties }: Props) {
   }
 
   function nextPage() {
-    router.push(`/?offset=${offset}`, { scroll: false });
+    router.push(`/?page=${Number(currentPage) + 1}`, { scroll: false });
   }
 
   return (
@@ -75,8 +83,8 @@ export function ProductsTable({ properties, offset, totalProperties }: Props) {
       <CardFooter>
         <form className="flex items-center w-full justify-between">
           <div className="text-xs text-muted-foreground">
-            Mostrando <strong>{offset}</strong> de{' '}
-            <strong>{totalProperties}</strong> inmuebles
+            Página <strong>{currentPage}</strong> de{' '}
+            <strong>{totalPages}</strong>
           </div>
           <div className="flex">
             <Button
@@ -84,7 +92,7 @@ export function ProductsTable({ properties, offset, totalProperties }: Props) {
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset === productsPerPage}
+              disabled={Number(currentPage) <= 1}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Anterior
@@ -94,7 +102,7 @@ export function ProductsTable({ properties, offset, totalProperties }: Props) {
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset + productsPerPage > totalProperties}
+              disabled={Number(currentPage) >= totalPages}
             >
               Siguiente
               <ChevronRight className="ml-2 h-4 w-4" />

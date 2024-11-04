@@ -18,10 +18,11 @@ export const post = async (path: string, formData: FormData) => {
   }
 };
 
-export const get = async (path: string) => {
+export const get = async (path: string, params?: any) => {
   try {
     const res = await axiosInstance.get(path, {
-      headers: { ...getHeaders() }
+      headers: { ...getHeaders() },
+      params: params
     });
 
     return res.data;

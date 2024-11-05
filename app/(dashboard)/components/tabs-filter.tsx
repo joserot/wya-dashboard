@@ -22,12 +22,15 @@ export function TabsFilter({ categories }: Props) {
     } else {
       params.set('category', value);
     }
+
+    params.delete('page');
+
     replace(`${pathname}?${params.toString()}`);
   };
 
   return (
     <TabsList>
-      <TabsTrigger onClick={(e) => handleChangeFilter('all')} value="all">
+      <TabsTrigger value="all" onClick={(e) => handleChangeFilter('all')}>
         Todos
       </TabsTrigger>
       {categories.map((category) => (

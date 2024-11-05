@@ -28,7 +28,7 @@ export default async function ProductsPage({
   if (!result || !categories) return null;
 
   return (
-    <Tabs defaultValue="all">
+    <Tabs defaultValue={!category ? 'all' : category}>
       <div className="flex items-center">
         <TabsFilter categories={categories} />
         <div className="ml-auto flex items-center gap-2">

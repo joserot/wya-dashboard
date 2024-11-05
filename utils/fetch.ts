@@ -12,9 +12,14 @@ export const post = async (path: string, formData: FormData) => {
     const res = await axiosInstance.post(path, Object.fromEntries(formData), {
       headers: { 'Content-Type': 'application/json', ...getHeaders() }
     });
-    return res.data;
-  } catch (error) {
-    return { data: null, error };
+
+    if (res.status === 200 || res.status === 201) {
+      return res.data;
+    }
+
+    throw new Error();
+  } catch (error: any) {
+    throw error.response ? error.response.data : new Error(error.message);
   }
 };
 

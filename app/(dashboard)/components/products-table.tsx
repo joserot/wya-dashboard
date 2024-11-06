@@ -68,7 +68,7 @@ export function ProductsTable({
                 Portada
               </TableHead>
               <TableHead>Nombre</TableHead>
-              <TableHead>Tipo</TableHead>
+              <TableHead>Categoría</TableHead>
               <TableHead className="hidden md:table-cell">Precio</TableHead>
               <TableHead className="hidden md:table-cell">
                 Clicks en contactar

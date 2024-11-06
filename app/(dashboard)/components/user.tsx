@@ -47,7 +47,6 @@ export function User({ user }: Props) {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{user.fullName}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Configuración</DropdownMenuItem>
         <DropdownMenuItem onClick={handelClick}>Cerrar sesión</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -20,6 +20,17 @@ interface Props {
 }
 
 export function Product({ property }: Props) {
+  const getCategoryColor = (category: Category) => {
+    switch (category.name) {
+      case 'En venta':
+        return 'bg-green-500';
+      case 'En alquiler':
+        return 'bg-yellow-500';
+      default:
+        return '';
+    }
+  };
+
   return (
     <TableRow>
       <TableCell className="w-[100px] hidden sm:table-cell">
@@ -33,11 +44,21 @@ export function Product({ property }: Props) {
       </TableCell>
       <TableCell className="font-medium">{property.name}</TableCell>
       <TableCell>
-        <Badge variant="outline" className="capitalize">
+        <Badge
+          variant="outline"
+          className={`${getCategoryColor(property.category)} capitalize`}
+        >
           {property.category.name}
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${property.price}`}</TableCell>
+      <TableCell className="hidden md:table-cell">{`${property.price.toLocaleString(
+        'es-AR',
+        {
+          currency: 'USD',
+          style: 'currency',
+          minimumFractionDigits: 0
+        }
+      )}`}</TableCell>
       <TableCell className="hidden md:table-cell">
         {property.contacts ?? 0}
       </TableCell>

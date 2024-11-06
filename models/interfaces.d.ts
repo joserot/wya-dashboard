@@ -7,6 +7,14 @@ interface Property {
   coverImage: string;
   images: string[];
   category: Category;
+  latitudeAndLongitude?: string;
+  location?: string;
+  totalArea?: number;
+  coveredArea?: number;
+  rooms?: number;
+  bathrooms?: number;
+  garages?: number;
+  parking?: boolean;
   contacts: number | null;
 }
 
